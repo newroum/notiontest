@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원수 카운팅</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  #counter {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  button {
+    font-size: 18px;
+    margin: 0 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div id="counter">0</div>
+<button id="plusBtn">+1</button>
+<button id="minusBtn">-1</button>
+
+<script>
+  const counter = document.getElementById('counter');
+  const plusBtn = document.getElementById('plusBtn');
+  const minusBtn = document.getElementById('minusBtn');
+
+  let count = 0;
+
+  plusBtn.addEventListener('click', () => {
+    count++;
+    updateCounter();
+  });
+
+  minusBtn.addEventListener('click', () => {
+    if (count > 0) {
+      count--;
+      updateCounter();
+    }
+  });
+
+  function updateCounter() {
+    counter.textContent = count;
+  }
+</script>
+
+</body>
+</html>
