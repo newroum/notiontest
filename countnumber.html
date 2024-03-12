@@ -88,24 +88,26 @@
   setBtn.addEventListener('click', () => {
     count = parseInt(countInput.value) || 0;
     updateCounter();
+    localStorage.setItem('count', count); // 변경된 값 저장
   });
 
   plusBtn.addEventListener('click', () => {
     count++;
     updateCounter();
+    localStorage.setItem('count', count); // 변경된 값 저장
   });
 
   minusBtn.addEventListener('click', () => {
     if (count > 0) {
       count--;
       updateCounter();
+      localStorage.setItem('count', count); // 변경된 값 저장
     }
   });
 
   function updateCounter() {
     counter.textContent = count;
     countInput.value = count;
-    localStorage.setItem('count', count); // 변경된 값 저장
   }
 </script>
 
