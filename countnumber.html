@@ -94,6 +94,7 @@ let count = localStorage.getItem('count') ? parseInt(localStorage.getItem('count
 let goal = localStorage.getItem('goal') ? parseInt(localStorage.getItem('goal')) : 100;
 
 updateCounter();
+updateGoalCounter();
 updatePercentage();
 
 setCounterBtn.addEventListener('click', () => {
@@ -105,12 +106,17 @@ setCounterBtn.addEventListener('click', () => {
 
 setGoalBtn.addEventListener('click', () => {
   goal = parseInt(goalCount.value) || 0;
+  updateGoalCounter();
   localStorage.setItem('goal', goal);
   updatePercentage();
 });
 
 function updateCounter() {
   counterInput.value = count;
+}
+
+function updateGoalCounter() {
+  goalCount.value = count;
 }
 
 function updatePercentage() {
