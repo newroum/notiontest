@@ -13,6 +13,12 @@
     font-size: 24px;
     margin-bottom: 20px;
   }
+  input[type="number"] {
+    font-size: 18px;
+    padding: 5px 10px;
+    text-align: center;
+    width: 80px;
+  }
   button {
     font-size: 18px;
     margin: 0 10px;
@@ -24,15 +30,24 @@
 <body>
 
 <div id="counter">0</div>
+<input type="number" id="countInput" min="0" value="0">
+<button id="setBtn">Set</button>
 <button id="plusBtn">+1</button>
 <button id="minusBtn">-1</button>
 
 <script>
   const counter = document.getElementById('counter');
+  const countInput = document.getElementById('countInput');
+  const setBtn = document.getElementById('setBtn');
   const plusBtn = document.getElementById('plusBtn');
   const minusBtn = document.getElementById('minusBtn');
 
   let count = 0;
+
+  setBtn.addEventListener('click', () => {
+    count = parseInt(countInput.value) || 0;
+    updateCounter();
+  });
 
   plusBtn.addEventListener('click', () => {
     count++;
@@ -48,6 +63,7 @@
 
   function updateCounter() {
     counter.textContent = count;
+    countInput.value = count;
   }
 </script>
 
