@@ -86,67 +86,42 @@
 <script>
 const counterInput = document.getElementById('counterInput');
 const setCounterBtn = document.getElementById('setCounterBtn');
-const countInput = document.getElementById('countInput');
-const setBtn = document.getElementById('setBtn');
-const plusBtn = document.getElementById('plusBtn');
-const minusBtn = document.getElementById('minusBtn');
+const countInput = document.getElementById('countInput'); // 수정된 부분
+const setBtn = document.getElementById('setBtn'); // 수정된 부분
+const plusBtn = document.getElementById('plusBtn'); // 수정된 부분
+const minusBtn = document.getElementById('minusBtn'); // 수정된 부분
 const goalCount = document.getElementById('goalCount');
 const setGoalBtn = document.getElementById('setGoalBtn');
 const percentageCount = document.getElementById('percentageCount');
 
+let count = localStorage.getItem('count') ? parseInt(localStorage.getItem('count')) : 0;
+let goal = localStorage.getItem('goal') ? parseInt(localStorage.getItem('goal')) : 100;
 
-  let count = localStorage.getItem('count') ? parseInt(localStorage.getItem('count')) : 0;
-  let goal = localStorage.getItem('goal') ? parseInt(localStorage.getItem('goal')) : 100;
+updateCounter();
+updatePercentage();
 
+setCounterBtn.addEventListener('click', () => { // 수정된 부분
+  count = parseInt(counterInput.value) || 0;
   updateCounter();
+  localStorage.setItem('count', count);
   updatePercentage();
+});
 
-  setBtn.addEventListener('click', () => {
-    count = parseInt(countInput.value) || 0;
-    updateCounter();
-    localStorage.setItem('count', count);
-    updatePercentage();
-  });
+setGoalBtn.addEventListener('click', () => {
+  goal = parseInt(goalCount.value) || 0;
+  localStorage.setItem('goal', goal);
+  updatePercentage();
+});
 
-  plusBtn.addEventListener('click', () => {
-    count++;
-    updateCounter();
-    localStorage.setItem('count', count);
-    updatePercentage();
-  });
+function updateCounter() {
+  counter.textContent = count; // 수정된 부분
+  counterInput.value = count;
+}
 
-  minusBtn.addEventListener('click', () => {
-    if (count > 0) {
-      count--;
-      updateCounter();
-      localStorage.setItem('count', count);
-      updatePercentage();
-    }
-  });
-
-  setGoalBtn.addEventListener('click', () => {
-    goal = parseInt(goalCount.value) || 0;
-    localStorage.setItem('goal', goal);
-    updatePercentage();
-  });
-
-  setCounterBtn.addEventListener('click', () => {
-    count = parseInt(counterInput.value) || 0;
-    updateCounter();
-    localStorage.setItem('count', count);
-    updatePercentage();
-  });
-
-  function updateCounter() {
-    counter.textContent = count;
-    countInput.value = count;
-    counterInput.value = count;
-  }
-
-  function updatePercentage() {
-    const percentage = (count / goal) * 100;
-    percentageCount.textContent = `${percentage.toFixed(2)}%`;
-  }
+function updatePercentage() {
+  const percentage = (count / goal) * 100;
+  percentageCount.textContent = `${percentage.toFixed(2)}%`;
+}
 </script>
 
 </body>
