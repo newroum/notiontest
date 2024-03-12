@@ -81,8 +81,12 @@
     <input type="number" id="countInput" min="0" value="0">
     <button id="setBtn">Set</button>
   </div>
-  <div id="goal">목표 도매 회원 수: <span id="goalCount">100</span></div>
-  <div id="percentage">목표 달성률: <span id="percentageCount">0%</span></div>
+  <div id="goal">
+    목표 도매 회원 수: <span id="goalCount">100</span>
+  </div>
+  <div id="percentage">
+    목표 달성률: <span id="percentageCount">0%</span>
+  </div>
 </div>
 
 <script>
@@ -94,8 +98,16 @@
   const goalCount = document.getElementById('goalCount');
   const percentageCount = document.getElementById('percentageCount');
 
-  let count = localStorage.getItem('count') ? parseInt(localStorage.getItem('count')) : 0;
-  let goal = localStorage.getItem('goal') ? parseInt(localStorage.getItem('goal')) : 100; // 목표 도매 회원 수
+  let count = 0;
+  let goal = 100;
+
+  if (localStorage.getItem('count')) {
+    count = parseInt(localStorage.getItem('count'));
+  }
+
+  if (localStorage.getItem('goal')) {
+    goal = parseInt(localStorage.getItem('goal'));
+  }
 
   updateCounter();
   updatePercentage();
@@ -103,14 +115,14 @@
   setBtn.addEventListener('click', () => {
     count = parseInt(countInput.value) || 0;
     updateCounter();
-    localStorage.setItem('count', count); // 변경된 값 저장
+    localStorage.setItem('count', count);
     updatePercentage();
   });
 
   plusBtn.addEventListener('click', () => {
     count++;
     updateCounter();
-    localStorage.setItem('count', count); // 변경된 값 저장
+    localStorage.setItem('count', count);
     updatePercentage();
   });
 
@@ -118,7 +130,7 @@
     if (count > 0) {
       count--;
       updateCounter();
-      localStorage.setItem('count', count); // 변경된 값 저장
+      localStorage.setItem('count', count);
       updatePercentage();
     }
   });
