@@ -68,8 +68,8 @@
   const plusBtn = document.getElementById('plusBtn');
   const minusBtn = document.getElementById('minusBtn');
 
-  // 로컬 스토리지에서 값 불러오기
-  let count = localStorage.getItem('count') ? parseInt(localStorage.getItem('count')) : 0;
+  // 초기 회원수 설정
+  let count = 100; // 예시로 100으로 설정
 
   updateCounter();
 
@@ -93,8 +93,6 @@
   function updateCounter() {
     counter.textContent = count;
     countInput.value = count;
-    // 로컬 스토리지에 값 저장
-    localStorage.setItem('count', count);
   }
 </script>
 
