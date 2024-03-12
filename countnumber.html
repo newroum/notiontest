@@ -12,7 +12,7 @@
     padding-top: 50px;
   }
   .container {
-    max-width: 400px;
+    max-width: 600px;
     margin: 0 auto;
     background-color: #fff;
     border-radius: 8px;
@@ -20,30 +20,29 @@
     padding: 30px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
   .info-container {
+    flex: 0 1 50%;
     margin-bottom: 20px;
+    padding: 0 20px;
+    box-sizing: border-box;
   }
-  #counter-container {
+  .info-container h3 {
+    margin-top: 0;
+  }
+  .input-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
-  }
-  #counter {
-    font-size: 36px;
-    color: #333;
-    margin: 0 10px;
   }
   input[type="number"] {
     font-size: 18px;
     padding: 10px;
     text-align: center;
     width: 80px;
-    margin-bottom: 20px;
+    margin-left: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
   }
@@ -71,11 +70,15 @@
   </div>
   <div class="info-container" id="goalMembers">
     <h3>목표 도매 회원 수</h3>
-    <input type="number" id="goalCount" min="0" value="100">
+    <div class="input-container">
+      <span>목표 도매 회원 수:</span>
+      <input type="number" id="goalCount" min="0" value="100">
+      <button id="setGoalBtn">Set</button>
+    </div>
   </div>
   <div class="info-container" id="completionRate">
     <h3>목표 달성률</h3>
-    <span id="percentageCount">0%</span>
+    <div id="percentageCount">0%</div>
   </div>
   <div id="counter-container">
     <button id="minusBtn">-1</button>
@@ -91,7 +94,8 @@
   const setBtn = document.getElementById('setBtn');
   const plusBtn = document.getElementById('plusBtn');
   const minusBtn = document.getElementById('minusBtn');
-  const goalCountInput = document.getElementById('goalCount');
+  const goalCount = document.getElementById('goalCount');
+  const setGoalBtn = document.getElementById('setGoalBtn');
   const percentageCount = document.getElementById('percentageCount');
 
   let count = localStorage.getItem('count') ? parseInt(localStorage.getItem('count')) : 0;
@@ -123,8 +127,8 @@
     }
   });
 
-  goalCountInput.addEventListener('change', () => {
-    goal = parseInt(goalCountInput.value) || 0;
+  setGoalBtn.addEventListener('click', () => {
+    goal = parseInt(goalCount.value) || 0;
     localStorage.setItem('goal', goal);
     updatePercentage();
   });
