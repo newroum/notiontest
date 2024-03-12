@@ -84,16 +84,16 @@
 </div>
 
 <script>
-  const counter = document.getElementById('counter');
-  const counterInput = document.getElementById('counterInput');
-  const setCounterBtn = document.getElementById('setCounterBtn');
-  const countInput = document.getElementById('countInput');
-  const setBtn = document.getElementById('setBtn');
-  const plusBtn = document.getElementById('plusBtn');
-  const minusBtn = document.getElementById('minusBtn');
-  const goalCount = document.getElementById('goalCount');
-  const setGoalBtn = document.getElementById('setGoalBtn');
-  const percentageCount = document.getElementById('percentageCount');
+const counterInput = document.getElementById('counterInput');
+const setCounterBtn = document.getElementById('setCounterBtn');
+const countInput = document.getElementById('countInput');
+const setBtn = document.getElementById('setBtn');
+const plusBtn = document.getElementById('plusBtn');
+const minusBtn = document.getElementById('minusBtn');
+const goalCount = document.getElementById('goalCount');
+const setGoalBtn = document.getElementById('setGoalBtn');
+const percentageCount = document.getElementById('percentageCount');
+
 
   let count = localStorage.getItem('count') ? parseInt(localStorage.getItem('count')) : 0;
   let goal = localStorage.getItem('goal') ? parseInt(localStorage.getItem('goal')) : 100;
