@@ -22,6 +22,9 @@
     flex-direction: column;
     align-items: center;
   }
+  .info-container {
+    margin-bottom: 20px;
+  }
   #counter-container {
     display: flex;
     align-items: center;
@@ -31,15 +34,6 @@
     font-size: 36px;
     color: #333;
     margin: 0 10px;
-  }
-  #goal {
-    font-size: 24px;
-    color: #555;
-    margin-bottom: 20px;
-  }
-  #percentage {
-    font-size: 20px;
-    color: #777;
   }
   input[type="number"] {
     font-size: 18px;
@@ -63,26 +57,29 @@
   button:hover {
     background-color: #777;
   }
-  .button-group {
-    display: flex;
-    margin-top: 10px;
-  }
 </style>
 </head>
 <body>
 
 <div class="container">
+  <div class="info-container" id="currentMembers">
+    <h3>현재 도매 회원 수</h3>
+    <div id="counter">0</div>
+  </div>
+  <div class="info-container" id="goalMembers">
+    <h3>목표 도매 회원 수</h3>
+    <span id="goalCount">100</span>
+  </div>
+  <div class="info-container" id="completionRate">
+    <h3>목표 달성률</h3>
+    <span id="percentageCount">0%</span>
+  </div>
   <div id="counter-container">
     <button id="minusBtn">-1</button>
-    <div id="counter">0</div>
-    <button id="plusBtn">+1</button>
-  </div>
-  <div class="button-group">
     <input type="number" id="countInput" min="0" value="0">
+    <button id="plusBtn">+1</button>
     <button id="setBtn">Set</button>
   </div>
-  <div id="goal">목표 도매 회원 수: <span id="goalCount">100</span></div>
-  <div id="percentage">목표 달성률: <span id="percentageCount">0%</span></div>
 </div>
 
 <script>
@@ -95,7 +92,7 @@
   const percentageCount = document.getElementById('percentageCount');
 
   let count = localStorage.getItem('count') ? parseInt(localStorage.getItem('count')) : 0;
-  let goal = localStorage.getItem('goal') ? parseInt(localStorage.getItem('goal')) : 100; // 목표 도매 회원 수
+  let goal = localStorage.getItem('goal') ? parseInt(localStorage.getItem('goal')) : 100;
 
   updateCounter();
   updatePercentage();
@@ -103,14 +100,14 @@
   setBtn.addEventListener('click', () => {
     count = parseInt(countInput.value) || 0;
     updateCounter();
-    localStorage.setItem('count', count); // 변경된 값 저장
+    localStorage.setItem('count', count);
     updatePercentage();
   });
 
   plusBtn.addEventListener('click', () => {
     count++;
     updateCounter();
-    localStorage.setItem('count', count); // 변경된 값 저장
+    localStorage.setItem('count', count);
     updatePercentage();
   });
 
@@ -118,7 +115,7 @@
     if (count > 0) {
       count--;
       updateCounter();
-      localStorage.setItem('count', count); // 변경된 값 저장
+      localStorage.setItem('count', count);
       updatePercentage();
     }
   });
