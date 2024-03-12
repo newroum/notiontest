@@ -54,6 +54,10 @@
   button:hover {
     background-color: #777;
   }
+  .button-group {
+    display: flex;
+    margin-top: 10px;
+  }
 </style>
 </head>
 <body>
@@ -64,8 +68,10 @@
     <div id="counter">0</div>
     <button id="plusBtn">+1</button>
   </div>
-  <input type="number" id="countInput" min="0" value="0">
-  <button id="setBtn">Set</button>
+  <div class="button-group">
+    <input type="number" id="countInput" min="0" value="0">
+    <button id="setBtn">Set</button>
+  </div>
 </div>
 
 <script>
@@ -75,7 +81,7 @@
   const plusBtn = document.getElementById('plusBtn');
   const minusBtn = document.getElementById('minusBtn');
 
-  let count = 7000; // 초기 회원수 설정
+  let count = 100; // 초기 회원수 설정
 
   updateCounter();
 
