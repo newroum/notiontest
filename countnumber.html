@@ -66,7 +66,11 @@
 <div class="container">
   <div class="info-container" id="currentMembers">
     <h3>현재 도매 회원 수</h3>
-    <div id="counter">0</div>
+    <div class="input-container">
+      <span>현재 도매 회원 수:</span>
+      <input type="number" id="counterInput" min="0" value="0">
+      <button id="setCounterBtn">Set</button>
+    </div>
   </div>
   <div class="info-container" id="goalMembers">
     <h3>목표 도매 회원 수</h3>
@@ -90,6 +94,8 @@
 
 <script>
   const counter = document.getElementById('counter');
+  const counterInput = document.getElementById('counterInput');
+  const setCounterBtn = document.getElementById('setCounterBtn');
   const countInput = document.getElementById('countInput');
   const setBtn = document.getElementById('setBtn');
   const plusBtn = document.getElementById('plusBtn');
@@ -133,9 +139,17 @@
     updatePercentage();
   });
 
+  setCounterBtn.addEventListener('click', () => {
+    count = parseInt(counterInput.value) || 0;
+    updateCounter();
+    localStorage.setItem('count', count);
+    updatePercentage();
+  });
+
   function updateCounter() {
     counter.textContent = count;
     countInput.value = count;
+    counterInput.value = count;
   }
 
   function updatePercentage() {
